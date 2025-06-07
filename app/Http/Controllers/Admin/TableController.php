@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class TableController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar data meja.
      */
     public function index()
     {
@@ -19,7 +19,7 @@ class TableController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat data meja baru.
      */
     public function create()
     {
@@ -27,7 +27,7 @@ class TableController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan data meja baru ke database.
      */
     public function store(TableStoreRequest $request)
     {
@@ -38,11 +38,11 @@ class TableController extends Controller
             'location' => $request->location,
         ]);
 
-        return to_route('admin.tables.index')->with('success', 'Table created successfully.');
+        return to_route('admin.tables.index')->with('success', 'Data meja berhasil dibuat');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail data meja (jika diperlukan).
      */
     public function show(string $id)
     {
@@ -50,7 +50,7 @@ class TableController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form untuk mengubah data meja.
      */
     public function edit(Table $table)
     {
@@ -58,25 +58,23 @@ class TableController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Memperbarui data meja di database.
      */
     public function update(TableStoreRequest $request, Table $table)
     {
         $table->update($request->validated());
 
-        return to_route('admin.tables.index')->with('success', 'Table updated successfully.');
-
+        return to_route('admin.tables.index')->with('success', 'Data meja berhasil diperbarui');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data meja beserta reservasinya.
      */
     public function destroy(Table $table)
     {
         $table->reservations()->delete();
         $table->delete();
         
-        return to_route('admin.tables.index')->with('success', 'Table updated successfully.');
-
+        return to_route('admin.tables.index')->with('success', 'Data meja berhasil dihapus');
     }
 }

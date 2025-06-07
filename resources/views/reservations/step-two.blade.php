@@ -39,7 +39,7 @@
 
                                 <div class="mt-6 p-4 flex justify-between">
                                     <a href="{{ route('reservations.step-one') }}"
-                                        class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-yellow-400">Sebelumnya</a>
+                                        class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white font-bold">Sebelumnya</a>
                                     <button type="submit"
                                         class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white font-bold">Reservasi</button>
                                 </div>

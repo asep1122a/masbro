@@ -7,82 +7,71 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex m-2 p-2">
+
+            {{-- Tombol Kembali ke Daftar Menu --}}
+            <div class="flex justify-end mb-4">
                 <a href="{{ route('admin.menus.index') }}"
-                    class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Menu Index</a>
+                    class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md">← Kembali</a>
             </div>
-            <div class="m-2 p-2 bg-slate-100 rounded">
-                <div class="space-y-8 divide-y divide-gray-200 w-1/2 mt-10">
-                    <form method="POST" action="{{ route('admin.menus.update', $menu->id) }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="sm:col-span-6">
-                            <label for="name" class="block text-sm font-medium text-gray-700"> Name </label>
-                            <div class="mt-1">
-                                <input type="text" id="name" name="name" value="{{ $menu->name }}"
-                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                            </div>
-                            @error('name')
-                                <div class="text-sm text-red-400">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="sm:col-span-6">
-                            <label for="image" class="block text-sm font-medium text-gray-700"> Image </label>
-                            <div>
-                                <img class="w-32 h-32" src="{{ Storage::url($menu->image) }}">
-                            </div>
-                            <div class="mt-1">
-                                <input type="file" id="image" name="image"
-                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                            </div>
-                            @error('image')
-                                <div class="text-sm text-red-400">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="sm:col-span-6">
-                            <label for="price" class="block text-sm font-medium text-gray-700"> Price </label>
-                            <div class="mt-1">
-                                <input type="number" min="0.00" max="10000.00" step="0.01" id="price" name="price"
-                                    value="{{ $menu->price }}"
-                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                            </div>
-                            @error('price')
-                                <div class="text-sm text-red-400">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="sm:col-span-6 pt-5">
-                            <label for="body" class="block text-sm font-medium text-gray-700">Description</label>
-                            <div class="mt-1">
-                                <textarea id="body" rows="3" name="description"
-                                    class="shadow-sm focus:ring-indigo-500 appearance-none bg-white border py-2 px-3 text-base leading-normal transition duration-150 ease-in-out focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                {{ $menu->description }}
-                                </textarea>
-                            </div>
-                            @error('description')
-                                <div class="text-sm text-red-400">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="sm:col-span-6 pt-5">
-                            <label for="categories" class="block text-sm font-medium text-gray-700">Categories</label>
-                            <div class="mt-1">
-                                <select id="categories" name="categories[]" class="form-multiselect block w-full mt-1"
-                                    multiple>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}" @selected($menu->categories->contains($category))>
-                                            {{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mt-6 p-4">
-                            <button type="submit"
-                                class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Update</button>
-                        </div>
-                    </form>
+
+            {{-- Formulir Ubah Menu (tanpa kotakan luar) --}}
+            <form method="POST" action="{{ route('admin.menus.update', $menu->id) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                {{-- Nama Menu --}}
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nama Menu</label>
+                    <input type="text" id="name" name="name" value="{{ old('name', $menu->name) }}"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    @error('name')
+                        <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
 
-            </div>
+                {{-- Gambar Menu --}}
+                <div class="mb-4">
+                    <label for="image" class="block text-sm font-medium text-gray-700">Gambar Menu</label>
+                    <div class="mt-2 mb-2">
+                        <img src="{{ Storage::url($menu->image) }}" alt="Gambar Menu" class="w-32 h-32 rounded border">
+                    </div>
+                    <input type="file" id="image" name="image"
+                        class="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm" />
+                    @error('image')
+                        <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Harga Menu --}}
+                <div class="mb-4">
+                    <label for="price" class="block text-sm font-medium text-gray-700">Harga (Rp)</label>
+                    <input type="number" min="0" step="0.01" id="price" name="price"
+                        value="{{ old('price', $menu->price) }}"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm" />
+                    @error('price')
+                        <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Deskripsi Menu --}}
+                <div class="mb-6">
+                    <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+                    <textarea id="description" name="description" rows="3"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">{{ old('description', $menu->description) }}</textarea>
+                    @error('description')
+                        <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Tombol Submit --}}
+                <div class="text-right">
+                    <button type="submit"
+                        class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold">
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+
         </div>
     </div>
 </x-admin-layout>

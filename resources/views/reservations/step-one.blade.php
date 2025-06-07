@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="mt-6 p-4 flex justify-end">
                                     <button type="submit"
-                                  class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white font-bold">Next</button>
+                                  class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white font-bold">Selanjutnya</button>
                                 </div>
                             </form>
                         </div>

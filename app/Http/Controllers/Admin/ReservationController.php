@@ -13,92 +13,92 @@ use Illuminate\Http\Request;
 class ReservationController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar semua reservasi.
      */
     public function index()
     {
         $reservations = Reservation::all();
-        return view('admin.reservations.index' , compact('reservations'));
+        return view('admin.reservations.index', compact('reservations'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat reservasi baru.
      */
     public function create()
     {
-        $tables = Table::where('status', TableStatus::Avalaiable)->get();
+        $tables = Table::where('status', TableStatus::Tersedia)->get();
         return view('admin.reservations.create', compact('tables'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan data reservasi baru ke dalam database.
      */
     public function store(ReservationStoreRequest $request)
     {
         $table = Table::findOrFail($request->table_id);
+
+        // Validasi jumlah tamu melebihi kapasitas meja
         if ($request->guest_number > $table->guest_number) {
-            return back()->with('warning', 'Please choose the table base on guests.');
+            return back()->with('warning', 'Silakan pilih meja sesuai dengan jumlah tamu.');
         }
+
         $request_date = Carbon::parse($request->res_date);
+
+        // Cek apakah meja sudah dipesan pada tanggal yang sama
         foreach ($table->reservations as $res) {
             if ($res->res_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
-                return back()->with('warning', 'This table is reserved for this date.');
+                return back()->with('warning', 'Meja ini sudah dipesan pada tanggal tersebut.');
             }
         }
+
         Reservation::create($request->validated());
 
-        return to_route('admin.reservations.index')->with('success', 'Reservation created successfully.');
-
+        return to_route('admin.reservations.index')->with('success', 'Reservasi berhasil dibuat.');
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form untuk mengedit data reservasi.
      */
     public function edit(Reservation $reservation)
     {
-        $tables = Table::where('status', TableStatus::Avalaiable)->get();
+        $tables = Table::where('status', TableStatus::Tersedia)->get();
         return view('admin.reservations.edit', compact('reservation', 'tables'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Memperbarui data reservasi di database.
      */
     public function update(ReservationStoreRequest $request, Reservation $reservation)
     {
         $table = Table::findOrFail($request->table_id);
+
+        // Validasi jumlah tamu melebihi kapasitas meja
         if ($request->guest_number > $table->guest_number) {
-            return back()->with('warning', 'Please choose the table base on guests.');
+            return back()->with('warning', 'Silakan pilih meja sesuai dengan jumlah tamu');
         }
+
         $request_date = Carbon::parse($request->res_date);
+
+        // Cek apakah meja sudah dipesan oleh reservasi lain di tanggal yang sama
         $reservations = $table->reservations()->where('id', '!=', $reservation->id)->get();
         foreach ($reservations as $res) {
             if ($res->res_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
-                return back()->with('warning', 'This table is reserved for this date.');
+                return back()->with('warning', 'Meja ini sudah dipesan pada tanggal tersebut');
             }
         }
 
         $reservation->update($request->validated());
-        return to_route('admin.reservations.index')->with('success', 'Reservation updated successfully.');
+
+        return to_route('admin.reservations.index')->with('success', 'Reservasi berhasil diperbarui');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Menghapus data reservasi dari database.
      */
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
 
-        return to_route('admin.reservations.index')->with('warning', 'Reservation deleted successfully.');
+        return to_route('admin.reservations.index')->with('warning', 'Reservasi berhasil dihapus');
     }
 }

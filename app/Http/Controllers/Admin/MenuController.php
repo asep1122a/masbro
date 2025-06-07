@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuStoreRequest;
 use App\Models\Category;
 use App\Models\Menu;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Tampilkan daftar semua menu.
      */
     public function index()
     {
@@ -22,7 +21,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Tampilkan formulir untuk membuat menu baru.
      */
     public function create()
     {
@@ -31,7 +30,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Simpan menu baru ke dalam penyimpanan.
      */
     public function store(MenuStoreRequest $request)
     {
@@ -48,11 +47,11 @@ class MenuController extends Controller
             $menu->categories()->attach($request->categories);
         }
 
-        return to_route('admin.menus.index')->with('success', 'Menu created successfully.');
+        return to_route('admin.menus.index')->with('success', 'Menu berhasil ditambahkan.');
     }
 
     /**
-     * Display the specified resource.
+     * Tampilkan detail menu (belum digunakan).
      */
     public function show(string $id)
     {
@@ -60,7 +59,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Tampilkan formulir untuk mengedit menu yang dipilih.
      */
     public function edit(Menu $menu)
     {
@@ -69,7 +68,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Perbarui menu dalam penyimpanan.
      */
     public function update(Request $request, Menu $menu)
     {
@@ -78,6 +77,7 @@ class MenuController extends Controller
             'description' => 'required',
             'price' => 'required'
         ]);
+
         $image = $menu->image;
         if ($request->hasFile('image')) {
             Storage::delete($menu->image);
@@ -94,19 +94,19 @@ class MenuController extends Controller
         if ($request->has('categories')) {
             $menu->categories()->sync($request->categories);
         }
-        return to_route('admin.menus.index')->with('success', 'Menu updated successfully.');
 
+        return to_route('admin.menus.index')->with('success', 'Menu berhasil diperbarui');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Hapus menu dari penyimpanan.
      */
     public function destroy(Menu $menu)
     {
         Storage::delete($menu->image);
         $menu->categories()->detach();
         $menu->delete();
-        return to_route('admin.menus.index')->with('danger', 'Menu deleted successfully.');
 
+        return to_route('admin.menus.index')->with('danger', 'Menu berhasil dihapus');
     }
 }

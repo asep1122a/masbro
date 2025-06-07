@@ -14,10 +14,17 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<!-- Tambahkan ini di bagian <head> layout utama kamu -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 <body>
 <div class="bg-white shadow-md" x-data="{ isOpen: false }">
