@@ -52,21 +52,7 @@
                     @enderror
                 </div>
 
-                {{-- Lokasi Meja --}}
-                <div class="mb-6">
-                    <label for="location" class="block text-sm font-medium text-gray-700">Lokasi Meja</label>
-                    <select id="location" name="location" class="mt-1 w-full border border-gray-300 rounded-md py-2 px-3 text-sm">
-                        @foreach (App\Enums\TableLocation::cases() as $location)
-                            <option value="{{ $location->value }}" {{ old('location', $table->location->value) == $location->value ? 'selected' : '' }}>
-                                {{ __($location->name) }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('location')
-                        <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-
+                
                 {{-- Tombol Simpan di kanan bawah --}}
                 <div class="flex justify-end">
                     <button type="submit"
