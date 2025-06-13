@@ -1,7 +1,7 @@
-<x-admin-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+Warning yang muncul kemungkinan karena ada masalah pada penggunaan enum `App\Enums\TableStatus::cases()` di Blade. Biasanya, warning ini muncul jika:
+
+1. Enum `TableStatus` tidak ditemukan atau belum dibuat.
+2. Namespace `App\Enums\TableStatus` salah atau belum di
         </h2>
     </x-slot>
 
@@ -51,8 +51,7 @@
                         <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
                     @enderror
                 </div>
-
-                
+               
                 {{-- Tombol Simpan di kanan bawah --}}
                 <div class="flex justify-end">
                     <button type="submit"

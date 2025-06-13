@@ -28,9 +28,9 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                                     Status
                                 </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                                <!-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                                     Lokasi
-                                </th>
+                                </th> -->
                                 <th class="px-6 py-3 text-right text-xs font-medium text-gray-600 uppercase tracking-wider">
                                     Aksi
                                 </th>
@@ -47,9 +47,6 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                         {{ $table->status->name }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                        {{ $table->location->name }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-right">
                                         <div class="flex justify-end space-x-2">

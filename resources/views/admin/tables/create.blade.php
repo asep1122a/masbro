@@ -52,7 +52,7 @@
                 @enderror
             </div>
 
-            {{-- Lokasi Meja --}}
+            <!-- {{-- Lokasi Meja --}}
             <div class="mb-6">
                 <label for="location" class="block text-sm font-medium text-gray-700">Lokasi Meja</label>
                 <select id="location" name="location"
@@ -64,7 +64,7 @@
                 @error('location')
                     <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> -->
 
             {{-- Tombol Simpan --}}
             <div>

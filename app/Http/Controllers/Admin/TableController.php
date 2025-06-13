@@ -31,12 +31,13 @@ class TableController extends Controller
      */
     public function store(TableStoreRequest $request)
     {
-        Table::create([
-            'name' => $request->name,
-            'guest_number' => $request->guest_number,
-            'status' => $request->status,
-            'location' => $request->location,
+        $validated = $request->validate([
+            'name' => 'required',
+            'guest_number' => 'required|integer',
+            'status' => 'required',
         ]);
+
+        Table::create($validated);
 
         return to_route('admin.tables.index')->with('success', 'Data meja berhasil dibuat');
     }
@@ -74,7 +75,7 @@ class TableController extends Controller
     {
         $table->reservations()->delete();
         $table->delete();
-        
+
         return to_route('admin.tables.index')->with('success', 'Data meja berhasil dihapus');
     }
 }
