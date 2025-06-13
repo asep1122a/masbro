@@ -1,9 +1,4 @@
-Warning yang muncul kemungkinan karena ada masalah pada penggunaan enum `App\Enums\TableStatus::cases()` di Blade. Biasanya, warning ini muncul jika:
-
-1. Enum `TableStatus` tidak ditemukan atau belum dibuat.
-2. Namespace `App\Enums\TableStatus` salah atau belum di
-        </h2>
-    </x-slot>
+<x-admin-layout>
 
     <div class="py-6 px-4 max-w-4xl mx-auto">
         {{-- Tombol Kembali di kanan --}}
