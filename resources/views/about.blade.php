@@ -42,7 +42,7 @@
   </section>
 
   <section class="px-4" data-aos="fade-up">
-    <div class="flex justify-center gap-6 mt-12 mb-8" id="stats-section">
+    <div class="flex justify-center gap-6 mt-12 mb-8" id="stats-section">`
       @php
         $stats = [
           ['value' => 21, 'suffix' => '+', 'label' => 'Menu Variatif'],
@@ -115,12 +115,12 @@
     });
   </script>
 
-  <section class="bg-white py-8 px-4" data-aos="fade-up">
+  <section class="bg-white py-8 px-4 " data-aos="fade-up">
     <h1 class="text-3xl font-extrabold text-center text-red-700">Ulasan Pelanggan</h1>
     <div class="w-20 h-1 bg-yellow-400 rounded-full mx-auto mt-2 mb-4"></div>
 
-    <div class="mt-8 overflow-x-auto">
-      <div class="flex space-x-4 pb-4 flex-nowrap">
+    <div class="w-full flex justify-center">
+      <div class="flex space-x-4 pb-4 flex-nowrap ">
         @php
             $reviews = [
                 ['name' => 'Nur Aizah', 'date' => '6 bulan lalu', 'rating' => 5, 'comment' => 'Ayam gorengnya krispi banget sampe tulang-tulang. Pengin nyoba yg bakar... Tp nanti kapan2. Cah kangkungnya kurang ada rasa bumbu. Tp saya suka pisang krispinya'],
