@@ -20,11 +20,11 @@ class TimeBetween implements ValidationRule
         $pickupDate = Carbon::parse($value);
         $pickupTime = Carbon::createFromTime($pickupDate->hour, $pickupDate->minute, $pickupDate->second);
         // when the restaurant is open
-        $earliestTime = Carbon::createFromTimeString('17:00:00');
-        $lastTime = Carbon::createFromTimeString('23:00:00');
+        $earliestTime = Carbon::createFromTimeString('11:00:00');
+        $lastTime = Carbon::createFromTimeString('22:00:00');
 
         if (!$pickupTime->between($earliestTime, $lastTime)) {
-            $fail('Please choose the time between 17:00-23:00.');
+            $fail('Please choose the time between 11:00-22:00.');
         }
     }
 

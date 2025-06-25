@@ -115,40 +115,42 @@
     });
   </script>
 
-  <section class="bg-white py-8 px-4 " data-aos="fade-up">
-    <h1 class="text-3xl font-extrabold text-center text-red-700">Ulasan Pelanggan</h1>
-    <div class="w-20 h-1 bg-yellow-400 rounded-full mx-auto mt-2 mb-4"></div>
+  <section class="bg-white py-8 px-4" data-aos="fade-up">
+  <h1 class="text-3xl font-extrabold text-center text-red-700">Ulasan Pelanggan</h1>
+  <div class="w-20 h-1 bg-yellow-400 rounded-full mx-auto mt-2 mb-4"></div>
 
-    <div class="w-full flex justify-center">
-      <div class="flex space-x-4 pb-4 flex-nowrap ">
-        @php
-            $reviews = [
-                ['name' => 'Nur Aizah', 'date' => '6 bulan lalu', 'rating' => 5, 'comment' => 'Ayam gorengnya krispi banget sampe tulang-tulang. Pengin nyoba yg bakar... Tp nanti kapan2. Cah kangkungnya kurang ada rasa bumbu. Tp saya suka pisang krispinya'],
-                ['name' => 'Arif Hidayah', 'date' => '9 bulan lalu', 'rating' => 5, 'comment' => 'Tempat nyaman buat santai dengan angin spoi spoi sore, parkiran luas, akses mudah. Untuk makanan enak dan harga sangat wajar'],
-                ['name' => 'Baihaqi Fajar', 'date' => '7 bulan lalu', 'rating' => 5, 'comment' => 'Tempatnya mudah dijangkau karena lokasinya di pinggir jalan. Tempatnya cukup nyaman, apalagi untuk makan dengan rombongan besar. Tempat parkir juga cukup luas. Makanannya juga enak. Bebek bakarnya lezat, nasinya juga pulen. Es kopi gula susu arennya enak juga.'],
-                ['name' => 'Deddy Hutomo', 'date' => '9 bulan lalu', 'rating' => 4, 'comment' => 'Tempatnya luas dan kalau malam sejuk. Ada pilihan duduk atau lesehan. Tempat bersih. Makanan standard. Pelayanan ramah.'],
-            ];
-        @endphp
+  <div class="w-full flex justify-center">
+    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 pb-4 flex-wrap justify-center">
+      @php
+          $reviews = [
+              ['name' => 'Nur Aizah', 'date' => '6 bulan lalu', 'rating' => 5, 'comment' => 'Ayam gorengnya krispi banget sampe tulang-tulang. Pengin nyoba yg bakar... Tp nanti kapan2. Cah kangkungnya kurang ada rasa bumbu. Tp saya suka pisang krispinya'],
+              ['name' => 'Arif Hidayah', 'date' => '9 bulan lalu', 'rating' => 5, 'comment' => 'Tempat nyaman buat santai dengan angin spoi spoi sore, parkiran luas, akses mudah. Untuk makanan enak dan harga sangat wajar'],
+              ['name' => 'Baihaqi Fajar', 'date' => '7 bulan lalu', 'rating' => 5, 'comment' => 'Tempatnya mudah dijangkau karena lokasinya di pinggir jalan. Tempatnya cukup nyaman, apalagi untuk makan dengan rombongan besar. Tempat parkir juga cukup luas. Makanannya juga enak. Bebek bakarnya lezat, nasinya juga pulen. Es kopi gula susu arennya enak juga.'],
+              ['name' => 'Deddy Hutomo', 'date' => '9 bulan lalu', 'rating' => 4, 'comment' => 'Tempatnya luas dan kalau malam sejuk. Ada pilihan duduk atau lesehan. Tempat bersih. Makanan standard. Pelayanan ramah.'],
+          ];
+      @endphp
 
-        @foreach ($reviews as $review)
-          <div class="w-[320px] h-[230px] bg-white border border-gray-300 rounded-lg p-4 flex flex-col overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
-              <div class="flex justify-between items-center mb-1">
-                  <div class="text-base font-semibold text-gray-900">{{ $review['name'] }}</div>
-                  <div class="text-xs text-gray-500">{{ $review['date'] }}</div>
-              </div>
-              <div class="mb-2 text-yellow-400 text-base">
-                  @for ($i = 0; $i < $review['rating']; $i++)
-                      ⭐
-                  @endfor
-              </div>
-              <p class="text-gray-800 text-justify overflow-y-auto flex-grow leading-snug text-[13px]">
-                  {{ $review['comment'] }}
-              </p>
+      @foreach ($reviews as $review)
+        <div class="w-full md:w-[320px] h-[230px] bg-white border border-gray-300 rounded-lg p-4 flex flex-col overflow-hidden shadow-md"
+          data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+          <div class="flex justify-between items-center mb-1">
+            <div class="text-base font-semibold text-gray-900">{{ $review['name'] }}</div>
+            <div class="text-xs text-gray-500">{{ $review['date'] }}</div>
           </div>
-        @endforeach
-      </div>
+          <div class="mb-2 text-yellow-400 text-base">
+            @for ($i = 0; $i < $review['rating']; $i++)
+              ⭐
+            @endfor
+          </div>
+          <p class="text-gray-800 text-justify overflow-y-auto flex-grow leading-snug text-[13px]">
+            {{ $review['comment'] }}
+          </p>
+        </div>
+      @endforeach
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Swiper JS dan CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />

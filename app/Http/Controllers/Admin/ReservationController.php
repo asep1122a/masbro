@@ -46,7 +46,7 @@ class ReservationController extends Controller
 
         // Cek apakah meja sudah dipesan pada tanggal yang sama
         foreach ($table->reservations as $res) {
-            if ($res->res_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
+            if ($res->res_date->format('d/m/Y H:i') == $request_date->format('d/m/Y H:i')) {
                 return back()->with('warning', 'Meja ini sudah dipesan pada tanggal tersebut.');
             }
         }
@@ -82,7 +82,7 @@ class ReservationController extends Controller
         // Cek apakah meja sudah dipesan oleh reservasi lain di tanggal yang sama
         $reservations = $table->reservations()->where('id', '!=', $reservation->id)->get();
         foreach ($reservations as $res) {
-            if ($res->res_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
+            if ($res->res_date->format('d/m/Y H:i') == $request_date->format('d/m/Y H:i')) {
                 return back()->with('warning', 'Meja ini sudah dipesan pada tanggal tersebut');
             }
         }

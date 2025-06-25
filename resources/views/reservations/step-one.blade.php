@@ -71,12 +71,12 @@
                                     </label>
                                     <div class="mt-1">
                                         <input type="datetime-local" id="res_date" name="res_date"
-                                            min="{{ $min_date->format('Y-m-d\TH:i:s') }}"
-                                            max="{{ $max_date->format('Y-m-d\TH:i:s') }}"
-                                            value="{{ $reservation ? $reservation->res_date->format('Y-m-d\TH:i:s') : '' }}"
+                                            min="{{ $min_date->format('d/m/Y H:i') }}"
+                                            max="{{ $max_date->format('d/m/Y H:i') }}"
+                                            value="{{ $reservation ? $reservation->res_date->format('d/m/Y H:i') : '' }}"
                                             class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     </div>
-                                    <span class="text-xs">Pilih diantara waktu 11:00-22:00.</span>
+                                    <span class="text-xs">Pilih diantara waktu 11:00 AM-10:00 PM.</span>
                                     @error('tgl_res')
                                         <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror

@@ -89,7 +89,7 @@
 <footer class="bg-red-600 text-white py-10 border-t border-white">
     <div class="container mx-auto flex flex-wrap items-start justify-center px-4 lg:justify-between">
         <!-- Alamat -->
-        <div class="w-full md:w-1/3 mb-8 md:mb-0">
+        <div class="w-full md:w-1/3 mb-8 md:mb-0 text-center md:text-left">
             <h2 class="text-lg font-bold mb-4">Alamat</h2>
             <p class="text-xs mb-2">
                 <strong>Cabang 1</strong><br>
@@ -127,9 +127,10 @@
     </div>
 
     <div class="mt-8 border-t border-white pt-4 text-center text-xs">
-        &copy;Powered by Resto & Cafe Mas Bro
+        &copy; Powered by Resto & Cafe Mas Bro
     </div>
 </footer>
+>
 
 </body>
 
